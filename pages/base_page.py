@@ -1,4 +1,9 @@
+import math
+
+from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage:
@@ -22,4 +27,25 @@ class BasePage:
             self.browser.find_element(how, what)
         except NoSuchElementException:
             return False
+        return True
+
+    def is_text_equal(self, locator1, locator2):
+        text1 = self.browser.find_element(*locator1).text
+        text2 = self.browser.find_element(*locator2).text
+        return text1 == text2
+
+    def solve_quiz_and_get_code(self):
+        WebDriverWait(self.browser, 10).until(EC.alert_is_present())
+        alert = self.browser.switch_to.alert
+        x = alert.text.split(" ")[2]
+        answer = str(math.log(abs((12 * math.sin(float(x))))))
+        alert.send_keys(answer)
+        alert.accept()
+        try:
+            alert = self.browser.switch_to.alert
+            alert_text = alert.text
+            print(f"Your code: {alert_text}")
+            alert.accept()
+        except NoAlertPresentException:
+            print("No second alert presented")
         return True
