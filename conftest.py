@@ -29,5 +29,5 @@ def browser(request):
 def pytest_addoption(parser):
     parser.addoption('--language', action='store', default='en',
                      help="Choose language: ")
-    parser.addoption('--browser_name', action='store', default='firefox',
+    parser.addoption('--browser_name', action='store', default='chrome',
                      help="Choose browser: chrome or firefox")
