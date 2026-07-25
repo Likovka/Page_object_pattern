@@ -3,7 +3,7 @@ from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
-    PAGE_URL = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
+    PAGE_URL = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
 
     def add_to_basket(self):
         self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON).click()
