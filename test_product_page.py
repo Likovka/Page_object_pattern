@@ -18,6 +18,7 @@ def generate_register_data(type_data):
         case _:
             return None
 
+
 @pytest.mark.need_review
 @pytest.mark.parametrize('promo', ["offer0",
                                    "offer1",
@@ -38,9 +39,6 @@ def test_guest_can_add_product_to_basket(browser, promo):
     product_page.solve_quiz_and_get_code()
     product_page.compare_names()
     product_page.compare_prices()
-
-
-TODO: "Нужны более осмысленные и детальные комментарии для ассертов"
 
 
 @pytest.mark.xfail(reason="Success message always shows after adding product to basket")
@@ -70,11 +68,13 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.open()
     page.should_be_login_link()
 
+
 @pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     page = ProductPage(browser)
     page.open()
     page.go_to_login_page()
+
 
 @pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
