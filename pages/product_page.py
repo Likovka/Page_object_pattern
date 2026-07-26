@@ -9,10 +9,12 @@ class ProductPage(BasePage):
         self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON).click()
 
     def compare_names(self):
-        return self.is_text_equal(ProductPageLocators.PRODUCT_NAME, ProductPageLocators.PRODUCT_NAME_IN_BASKET)
+        assert self.is_text_equal(ProductPageLocators.PRODUCT_NAME,
+                                  ProductPageLocators.PRODUCT_NAME_IN_BASKET), "Products names are not equal"
 
     def compare_prices(self):
-        return self.is_text_equal(ProductPageLocators.PRODUCT_PRICE, ProductPageLocators.PRODUCT_PRICE_IN_BASKET)
+        assert self.is_text_equal(ProductPageLocators.PRODUCT_PRICE,
+                                  ProductPageLocators.PRODUCT_PRICE_IN_BASKET), "Products prices are not equal"
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(
