@@ -18,7 +18,7 @@ def generate_register_data(type_data):
         case _:
             return None
 
-
+@pytest.mark.need_review
 @pytest.mark.parametrize('promo', ["offer0",
                                    "offer1",
                                    "offer2",
@@ -70,13 +70,13 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.open()
     page.should_be_login_link()
 
-
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     page = ProductPage(browser)
     page.open()
     page.go_to_login_page()
 
-
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page = ProductPage(browser)
     page.open()
@@ -103,6 +103,7 @@ class TestUserAddToBasketFromProductPage:
         product_page.open()
         product_page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self):
         product_page = ProductPage(self.browser)
         product_page.open()

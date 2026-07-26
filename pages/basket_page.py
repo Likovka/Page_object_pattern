@@ -1,5 +1,5 @@
-from pages.base_page import BasePage
-from pages.locators import BasketPageLocators
+from .base_page import BasePage
+from .locators import BasketPageLocators
 
 
 class BasketPage(BasePage):
@@ -9,4 +9,5 @@ class BasketPage(BasePage):
         assert self.is_not_element_present(*BasketPageLocators.BASKET_ITEMS), "Basket is not empty, but should be"
 
     def guest_can_see_empty_basket_message(self):
-        assert self.is_element_present(*BasketPageLocators.EMPTY_BASKET_MESSAGE), "There are should be an empty basket message"
+        assert self.is_element_present(*BasketPageLocators.EMPTY_BASKET_MESSAGE),\
+            "There are should be an empty basket message"

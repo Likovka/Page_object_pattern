@@ -1,3 +1,6 @@
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
@@ -6,7 +9,8 @@ class ProductPage(BasePage):
     PAGE_URL = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
 
     def add_to_basket(self):
-        self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON).click()
+        WebDriverWait(self.browser, self.timeout).until(
+            EC.element_to_be_clickable(ProductPageLocators.ADD_TO_BASKET_BUTTON)).click()
 
     def compare_names(self):
         assert self.is_text_equal(ProductPageLocators.PRODUCT_NAME,
