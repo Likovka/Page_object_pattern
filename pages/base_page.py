@@ -58,12 +58,10 @@ class BasePage:
         return True
 
     def is_text_equal(self, locator1, locator2):
-        WebDriverWait(self.browser, self.timeout).until(EC.presence_of_element_located(locator1))
-        WebDriverWait(self.browser, self.timeout).until(EC.presence_of_element_located(locator2))
+        element1 = WebDriverWait(self.browser, self.timeout).until(EC.presence_of_element_located(locator1))
+        element2 = WebDriverWait(self.browser, self.timeout).until(EC.presence_of_element_located(locator2))
 
-        text1 = self.browser.find_element(*locator1).text
-        text2 = self.browser.find_element(*locator2).text
-        return text1 == text2
+        return element1.text == element2.text
 
     def solve_quiz_and_get_code(self):
         WebDriverWait(self.browser, self.timeout).until(EC.alert_is_present())
